@@ -4,8 +4,8 @@ from queue import Queue, Empty
 import time
 import code
 
-import arcade
-import pie4t
+from direct.task import Task
+
 
 import __main__
 from __main__ import __dict__ as main_dict
@@ -18,7 +18,10 @@ class Repl:
 
         self.console = code.InteractiveConsole(locals=main_dict,filename='輸入')   
         
-        arcade.schedule(self.handle_repl, 0.2)
+
+        #arcade.schedule(self.handle_repl, 0.2)
+        taskMgr.doMethodLater(0.5, self.handle_repl, 'handle_repl')
+        
         t = threading.Thread(target=self.readline_thread)
         t.daemon = True
         t.start()  
@@ -36,11 +39,12 @@ class Repl:
                  print('請按上方執行或STOP按鈕')
                  return
 
-    def handle_repl(self, dt):
+    def handle_repl(self, task):
+        #print('handling...')
         try:
             line = self.cmd_queue.get(block=False)
         except Empty:
-            return
+            return task.again
 
         # strip enter  or  leading white space
         line = line.rstrip()
@@ -55,6 +59,8 @@ class Repl:
             # complete
             print('>>> ', end='')
             self.is_cmd_completed = True
+
+        return task.again
 
         # try:
         #     if '=' in line:
