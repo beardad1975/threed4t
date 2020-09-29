@@ -21,5 +21,13 @@ class Entity4t(Entity):
 
     @模型.setter
     def 紋理(self, value):
-        self.texture = value 
+        self.texture = value
+
+    @property
+    def 位置(self):
+        return self.position 
+
+    @位置.setter
+    def 位置(self, value):
+        self.position = value  
 

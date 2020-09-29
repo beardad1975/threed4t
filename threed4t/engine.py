@@ -74,6 +74,11 @@ class Engine3D(Ursina, Repl):
         self.editor_camera = EditorCamera()
 
 
+    def input(self, key):
+        print('my input:', key)
+        Ursina.input(self, key)
+
+
     def simulate(self):
         
         #self.lazy_setup()
