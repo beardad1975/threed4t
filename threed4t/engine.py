@@ -4,7 +4,7 @@ from ursina import *
 from . import common
 from .repl_panda import Repl
 from .entity4t import Entity4t
-
+from .assist import CorAssist
 
 import __main__
 
@@ -70,14 +70,28 @@ class Engine3D(Ursina, Repl):
 
         print(f"建立舞台(寬{self.win_width}x高{self.win_height})")
 
+        #cor assist
+        self.cor_assist = CorAssist()
+
         #editor camera
         self.editor_camera = EditorCamera()
 
 
     def input(self, key):
-        print('my input:', key)
+        if key == 'control':
+            self.cor_assist.enabled = not self.cor_assist.enabled
+
+        #print('my input:', key)
         Ursina.input(self, key)
 
+
+    # def input_up(self, key):
+    #     print('my input up:', key)
+    #     Ursina.input_up(self, key)
+
+    # def input_hold(self, key):
+    #     print('my input hold:', key)
+    #     Ursina.input_hold(self, key)
 
     def simulate(self):
         
