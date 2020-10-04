@@ -114,7 +114,7 @@ class Engine3D(Ursina, Repl):
         ShowBase.run(self)    
 
     def add_entity(self, *args, **kwargs):
-        print('here')
+        
         e = Entity4t(*args, **kwargs)
         return e
 

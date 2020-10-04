@@ -19,3 +19,4 @@ is_engine_created = False
 # stage is a 3d engine
 stage = None
 舞台 = None
+cor_assist = None

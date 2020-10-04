@@ -1,7 +1,7 @@
 from panda3d.core import PerspectiveLens, OrthographicLens, LensNode, NodePath
 
 from ursina import *
-
+from . import common
 
 # class CompassCube(Entity):
 #     def __init__(self):
@@ -13,9 +13,32 @@ from ursina import *
 #         print('camara world position', camera.world_rotation)
 #         self.rotation = camera.world_rotation * Vec3(-1,-1,-1)
 
+class CorMark(Text):
+    def __init__(self, axis_name):
+        Text.size = 0.04
+        Text.default_resolution = 1080 * Text.size
+        super().__init__(text=axis_name)
+        #self.color = color.gray
+        self.axis_name = axis_name
+        # enable update methon of entity
+        self.ignore = False
+        
+
+        if self.axis_name == 'x':
+            self.cone = common.cor_assist.cone_x
+        elif self.axis_name == 'y':
+            self.cone = common.cor_assist.cone_y
+        else :
+            self.cone = common.cor_assist.cone_z
+
+    def update(self):        
+        self.position = self.cone.screen_position
+
 
 class CorAssist:
     def __init__(self):
+        # keep ref in common
+        common.cor_assist = self
 
         self._enabled = False
         self.grid = Entity(model=Grid(10, 10), scale=10, color=color.rgb(180,180,180))
@@ -50,6 +73,10 @@ class CorAssist:
         self.cone_y = Entity(model=Cone(4, direction=(0,1,0)), color=color.green,position=(0,5,0),scale=0.5)
         self.cone_z = Entity(model=Cone(4, direction=(0,0,1)), color=color.rgb(180,0,0),position=(0,0,5),scale=0.5)
 
+        # cor mark 
+        self.mark_x = CorMark('x')
+        self.mark_y = CorMark('y')
+        self.mark_z = CorMark('z')
 
         self.disable_gizmo()
 
@@ -64,7 +91,9 @@ class CorAssist:
         self.cone_x.enabled = True
         self.cone_y.enabled = True
         self.cone_z.enabled = True
-
+        self.mark_x.enabled = True
+        self.mark_y.enabled = True
+        self.mark_z.enabled = True
 
     def disable_gizmo(self):
         self.grid.enabled = False
@@ -77,6 +106,9 @@ class CorAssist:
         self.cone_x.enabled = False
         self.cone_y.enabled = False
         self.cone_z.enabled = False
+        self.mark_x.enabled = False
+        self.mark_y.enabled = False
+        self.mark_z.enabled = False
 
 
 

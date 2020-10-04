@@ -7,7 +7,7 @@ from .engine import Engine3D
 模擬3D引擎 = Engine3D
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera',
-            '模擬進行中', '新增3D物件',
+            '模擬進行中', '新增3D物件', 'color',
             ]
 
 ######## top level function
