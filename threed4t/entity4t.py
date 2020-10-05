@@ -6,13 +6,24 @@ class Entity4t(Entity):
         if not 'model' in kwargs:
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
+
+        if not 'collider' in kwargs:
+            kwargs['collider'] = 'box'
+        
         super().__init__(*args, **kwargs)
 
     def 位置動畫(self, 座標, 延遲=0, 持續=1):
+        #座標 = Vec3(座標差[0], 座標差[1], 座標差[2],) + self.position
         self.animate_position(座標, delay=延遲 ,duration=持續)
 
-    
+    def 旋轉動畫(self, 角度, 延遲=0, 持續=1):    
+        self.animate_rotation(角度, delay=延遲 ,duration=持續)
 
+    def 縮放動畫(self, 比例, 延遲=0, 持續=1):    
+        self.animate_scale(比例, delay=延遲 ,duration=持續)
+
+    def 顏色動畫(self, 顏色, 延遲=0, 持續=1):    
+        self.animate_color(顏色, delay=延遲 ,duration=持續)
 
     @property
     def 模型(self):
@@ -41,6 +52,15 @@ class Entity4t(Entity):
     @模型.setter
     def 上層物件(self, value):
         self.parent = value
+
+    # enabled
+    @property
+    def 有效狀態(self):
+        return self.enabled
+
+    @有效狀態.setter
+    def 有效狀態(self, value):
+        self.enabled = value
 
     # color
     @property
@@ -192,67 +212,67 @@ class Entity4t(Entity):
 
     # scale
     @property
-    def 比例縮放(self):
+    def 縮放(self):
         return self.scale 
 
-    @比例縮放.setter
-    def 比例縮放(self, value):
+    @縮放.setter
+    def 縮放(self, value):
         self.scale = value 
 
     @property
-    def 比例縮放x(self):
+    def 縮放x(self):
         return self.scale_x 
 
-    @比例縮放x.setter
-    def 比例縮放x(self, value):
+    @縮放x.setter
+    def 縮放x(self, value):
         self.scale_x = value  
 
     @property
-    def 比例縮放y(self):
+    def 縮放y(self):
         return self.scale_y 
 
-    @比例縮放y.setter
-    def 比例縮放y(self, value):
+    @縮放y.setter
+    def 縮放y(self, value):
         self.scale_y = value 
 
     @property
-    def 比例縮放z(self):
+    def 縮放z(self):
         return self.scale_z 
 
-    @比例縮放z.setter
-    def 比例縮放z(self, value):
+    @縮放z.setter
+    def 縮放z(self, value):
         self.scale_z = value 
 
     @property
-    def 全域比例縮放(self):
+    def 全域縮放(self):
         return self.world_scale 
 
-    @全域比例縮放.setter
-    def 全域比例縮放(self, value):
+    @全域縮放.setter
+    def 全域縮放(self, value):
         self.world_scale = value 
 
     @property
-    def 全域比例縮放x(self):
+    def 全域縮放x(self):
         return self.world_scale_x 
 
-    @全域比例縮放x.setter
-    def 全域比例縮放x(self, value):
+    @全域縮放x.setter
+    def 全域縮放x(self, value):
         self.world_scale_x = value 
 
     @property
-    def 全域比例縮放y(self):
+    def 全域縮放y(self):
         return self.world_scale_y 
 
-    @全域比例縮放y.setter
-    def 全域比例縮放y(self, value):
+    @全域縮放y.setter
+    def 全域縮放y(self, value):
         self.world_scale_y = value 
 
     @property
-    def 全域比例縮放z(self):
+    def 全域縮放z(self):
         return self.world_scale_z 
 
-    @全域比例縮放z.setter
-    def 全域比例縮放z(self, value):
+    @全域縮放z.setter
+    def 全域縮放z(self, value):
         self.world_scale_z = value 
 
 

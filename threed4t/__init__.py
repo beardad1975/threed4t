@@ -4,18 +4,20 @@ from ursina import *
 
 from . import common
 from .engine import Engine3D
+from .mouse4t import Mouse4T
 模擬3D引擎 = Engine3D
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera',
-            '模擬進行中', '新增3D物件', 'color',
+            '模擬進行中', '新增3D物件', 'color','Vec3','Vec4','Vec2',
+            '按住的鍵', '滑鼠','天空',
             ]
 
-
-
-
+按住的鍵 = held_keys
+滑鼠 = Mouse4T()
+天空 = Sky
 ######## top level function
-import __main__
-__main__.按住的鍵 = held_keys
+# import __main__
+# __main__.按住的鍵 = held_keys
 
 
 def simulate():

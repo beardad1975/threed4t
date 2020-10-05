@@ -89,12 +89,11 @@ class Engine3D(Ursina, Repl):
 
     def input_up(self, key):
         if self.user_key_release_handler:
-            try:
+            if key in self._input_name_changes:
                 k = self._input_name_changes[key]
                 self.user_key_release_handler(k)
-            except:
-                #print('execption key:', key)
-                pass
+            else:
+                self.user_key_release_handler(key)
         Ursina.input_up(self, key)
 
     # def input_hold(self, key):
@@ -116,13 +115,11 @@ class Engine3D(Ursina, Repl):
 
         if self.user_key_press_handler :
             #print('do key press')
-            try:
+            if key in self._input_name_changes:
                 k = self._input_name_changes[key]
                 self.user_key_press_handler(k)
-            except:
-                #print('execption key:', key)
-                pass
-            
+            else:
+                self.user_key_press_handler(key)
 
         #print('my input:', key)
         Ursina.input(self, key)
