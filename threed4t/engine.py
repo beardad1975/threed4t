@@ -1,3 +1,4 @@
+from inspect import signature
 
 from ursina import *
 
@@ -26,6 +27,9 @@ class Engine3D(Ursina, Repl):
         if Engine3D.__first_time:
             self.do_init(*args, **kwargs)
             Engine3D.__first_time = False
+
+
+        
 
     def do_init(self, 寬=common.WIN_WIDTH, 
                        高=common.WIN_HEIGHT, 
@@ -76,13 +80,53 @@ class Engine3D(Ursina, Repl):
         #editor camera
         self.editor_camera = EditorCamera()
 
+        # custom event handler 
+        self.user_key_press_handler = None
+        self.user_key_release_handler = None
+
+
+    def input_up(self, key):
+        if self.user_key_release_handler:
+            self.user_key_release_handler(key)
+            
+        Ursina.input_up(self, key)
 
     def input(self, key):
         if key == 'control':
             self.cor_assist.enabled = not self.cor_assist.enabled
 
+        if self.user_key_press_handler :
+            #print('do key press')
+            self.user_key_press_handler(key)
+
         #print('my input:', key)
         Ursina.input(self, key)
+
+
+
+
+    def collect_user_event_handlers(self):
+        if hasattr(__main__, '按下鍵盤時'):
+            # check number of parameters
+            sig = signature(__main__.按下鍵盤時)
+            if len(sig.parameters) == 1:
+                 # parameters: x, y, button, modifiers
+                self.user_key_press_handler = __main__.按下鍵盤時
+                print( '登錄事件函式：按下鍵盤時' )
+            else:
+                print('事件函式錯誤: 按下鍵盤時 需要1個參數')
+                sys.exit()
+
+        if hasattr(__main__, '放開鍵盤時'):
+            # check number of parameters
+            sig = signature(__main__.放開鍵盤時)
+            if len(sig.parameters) == 1:
+                 # parameters: x, y, button, modifiers
+                self.user_key_release_handler = __main__.放開鍵盤時
+                print( '登錄事件函式：放開鍵盤時' )
+            else:
+                print('事件函式錯誤: 放開鍵盤時 需要1個參數')
+                sys.exit()
 
 
     # def input_up(self, key):
@@ -96,7 +140,7 @@ class Engine3D(Ursina, Repl):
     def simulate(self):
         
         #self.lazy_setup()
-        #self.collect_user_event_handlers()
+        self.collect_user_event_handlers()
         self.start_repl()
 
         
