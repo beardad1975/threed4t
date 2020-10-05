@@ -10,7 +10,12 @@ __all__ = [
             '模擬進行中', '新增3D物件', 'color',
             ]
 
+
+
+
 ######## top level function
+import __main__
+__main__.按住的鍵 = held_keys
 
 
 def simulate():

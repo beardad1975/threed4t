@@ -11,6 +11,7 @@ class Entity4t(Entity):
     def 位置動畫(self, 座標, 延遲=0, 持續=1):
         self.animate_position(座標, delay=延遲 ,duration=持續)
 
+    
 
 
     @property
@@ -41,6 +42,23 @@ class Entity4t(Entity):
     def 上層物件(self, value):
         self.parent = value
 
+    # color
+    @property
+    def 顏色(self):
+        return self.color 
+
+    @顏色.setter
+    def 顏色(self, value):
+        self.color = value
+
+    # origin
+    @property
+    def 中心點偏移(self):
+        return self.origin 
+
+    @中心點偏移.setter
+    def 中心點偏移(self, value):
+        self.origin = value
 
     # position
     @property

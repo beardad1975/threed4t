@@ -80,16 +80,35 @@ class Engine3D(Ursina, Repl):
         #editor camera
         self.editor_camera = EditorCamera()
 
-        # custom event handler 
+        # custom event handler
+        self.user_update_handler = None 
         self.user_key_press_handler = None
         self.user_key_release_handler = None
+        #self.user_key_hold_handler = None
 
 
     def input_up(self, key):
         if self.user_key_release_handler:
-            self.user_key_release_handler(key)
-            
+            try:
+                k = self._input_name_changes[key]
+                self.user_key_release_handler(k)
+            except:
+                #print('execption key:', key)
+                pass
         Ursina.input_up(self, key)
+
+    # def input_hold(self, key):
+    #     if self.user_key_hold_handler:
+    #         self.user_key_hold_handler(key)
+
+    #     Ursina.input_hold(self, key)
+
+    def _update(self, task):
+        if self.user_update_handler:
+            dt = globalClock.getDt() * application.time_scale
+            self.user_update_handler(dt)
+        
+        return Ursina._update(self, task)
 
     def input(self, key):
         if key == 'control':
@@ -97,7 +116,13 @@ class Engine3D(Ursina, Repl):
 
         if self.user_key_press_handler :
             #print('do key press')
-            self.user_key_press_handler(key)
+            try:
+                k = self._input_name_changes[key]
+                self.user_key_press_handler(k)
+            except:
+                #print('execption key:', key)
+                pass
+            
 
         #print('my input:', key)
         Ursina.input(self, key)
@@ -106,28 +131,39 @@ class Engine3D(Ursina, Repl):
 
 
     def collect_user_event_handlers(self):
-        if hasattr(__main__, '按下鍵盤時'):
+        if hasattr(__main__, '當按下時'):
             # check number of parameters
-            sig = signature(__main__.按下鍵盤時)
+            sig = signature(__main__.當按下時)
             if len(sig.parameters) == 1:
-                 # parameters: x, y, button, modifiers
-                self.user_key_press_handler = __main__.按下鍵盤時
-                print( '登錄事件函式：按下鍵盤時' )
+                 
+                self.user_key_press_handler = __main__.當按下時
+                print( '登錄事件函式：當按下時' )
             else:
-                print('事件函式錯誤: 按下鍵盤時 需要1個參數')
+                print('事件函式錯誤: 當按下時 需要1個參數')
                 sys.exit()
 
-        if hasattr(__main__, '放開鍵盤時'):
+        if hasattr(__main__, '當放開時'):
             # check number of parameters
-            sig = signature(__main__.放開鍵盤時)
+            sig = signature(__main__.當放開時)
             if len(sig.parameters) == 1:
-                 # parameters: x, y, button, modifiers
-                self.user_key_release_handler = __main__.放開鍵盤時
-                print( '登錄事件函式：放開鍵盤時' )
+                 
+                self.user_key_release_handler = __main__.當放開時
+                print( '登錄事件函式：當放開時' )
             else:
-                print('事件函式錯誤: 放開鍵盤時 需要1個參數')
+                print('事件函式錯誤: 當放開時 需要1個參數')
                 sys.exit()
 
+
+        if hasattr(__main__, '當更新時'):
+            # check number of parameters
+            sig = signature(__main__.當更新時)
+            if len(sig.parameters) == 1:
+                  
+                self.user_update_handler = __main__.當更新時
+                print( '登錄事件函式：當更新時' )
+            else:
+                print('事件函式錯誤: 當更新時 需要1個參數')
+                sys.exit()
 
     # def input_up(self, key):
     #     print('my input up:', key)
