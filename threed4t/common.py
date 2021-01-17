@@ -20,3 +20,10 @@ is_engine_created = False
 stage = None
 舞台 = None
 cor_assist = None
+
+# path
+from pathlib import Path
+
+package_folder = Path(__file__).parent
+model4t_folder = package_folder / 'model4t/'
+texture4t_folder = package_folder / 'texture4t/'

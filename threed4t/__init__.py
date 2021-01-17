@@ -8,8 +8,8 @@ from .mouse4t import Mouse4T
 模擬3D引擎 = Engine3D
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera',
-            '模擬進行中', '新增3D物件', 'color','Vec3','Vec4','Vec2',
-            '按住的鍵', '滑鼠','天空',
+            '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
+            '按住的鍵', '滑鼠','天空', '新增立方體', '新增立方體6面',
             ]
 
 按住的鍵 = held_keys
@@ -32,12 +32,20 @@ def simulate():
 
 ######## top level function
 
-def add_entity(*args, **kwargs):
+def add_cube(*args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
-    return common.stage.add_entity(*args, **kwargs)
+    return common.stage.add_cube(*args, **kwargs)
+新增立方體 = add_cube
 
-新增3D物件 = add_entity
+def add_cubic6(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_cubic6(*args, **kwargs)
+新增立方體6面 = add_cubic6
+
+
+
 
 
 

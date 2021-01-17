@@ -1,7 +1,7 @@
 from inspect import signature
 
 from ursina import *
-
+from direct.showbase.ShowBase import ShowBase
 from . import common
 from .repl_panda import Repl
 from .entity4t import Entity4t
@@ -190,11 +190,15 @@ class Engine3D(Ursina, Repl):
         
         ShowBase.run(self)    
 
-    def add_entity(self, *args, **kwargs):
+    def add_cube(self, *args, **kwargs):
         
-        e = Entity4t(*args, **kwargs)
+        e = Entity4t(model='cube', *args, **kwargs)
         return e
 
+
+    def add_cubic6(self, *args, **kwargs):
+        e = Entity4t(model='cubic_six_faces', *args, **kwargs)
+        return e
 
     ### property
     # @property

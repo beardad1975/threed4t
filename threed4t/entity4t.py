@@ -1,15 +1,36 @@
 from ursina import *
+from . import common
 
 class Entity4t(Entity):
     def __init__(self, *args, **kwargs):
         # handle default model and texture
+        #custom model
+        
+         
+        
+
+        #model default
         if not 'model' in kwargs:
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
+        else:
+            # has model keyword
+            if kwargs['model'] == 'cube':
+                kwargs['model'] = 'cube'
+                kwargs['texture'] = 'white_cube.png'
+            elif kwargs['model'] == 'cubic_six_faces':
+                # cubic with 6 face texture
+                kwargs['model'] = load_model('cubic6', common.model4t_folder)
+                kwargs['texture'] = load_texture('cubic6_colors',common.texture4t_folder)
+                #print(self._texture)
+                #print('here')
 
         if not 'collider' in kwargs:
             kwargs['collider'] = 'box'
         
+
+
+
         super().__init__(*args, **kwargs)
 
     def 位置動畫(self, 座標, 延遲=0, 持續=1):
