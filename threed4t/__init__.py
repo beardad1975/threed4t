@@ -10,6 +10,7 @@ __all__ = [
             '模擬3D引擎', 'Entity', 'EditorCamera',
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增立方體6面',
+            '新增球體內面','新增球體', '新增物體', '新增平面',
             ]
 
 按住的鍵 = held_keys
@@ -37,6 +38,20 @@ def add_cube(*args, **kwargs):
         Engine3D()
     return common.stage.add_cube(*args, **kwargs)
 新增立方體 = add_cube
+新增物體 = add_cube
+
+def add_sphere(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_sphere(*args, **kwargs)
+新增球體 = add_sphere
+
+def add_quad(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_quad(*args, **kwargs)
+新增平面 = add_quad
+
 
 def add_cubic6(*args, **kwargs):
     if not common.is_engine_created:
@@ -44,7 +59,11 @@ def add_cubic6(*args, **kwargs):
     return common.stage.add_cubic6(*args, **kwargs)
 新增立方體6面 = add_cubic6
 
-
+def add_sphere_inward(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_sphere_inward(*args, **kwargs)
+新增球體內面 = add_sphere_inward
 
 
 

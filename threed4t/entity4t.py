@@ -6,24 +6,27 @@ class Entity4t(Entity):
         # handle default model and texture
         #custom model
         
-         
-        
-
-        #model default
-        if not 'model' in kwargs:
+        if not 'model' in kwargs or kwargs['model'] == 'cube':
+            # default cube model 
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
-        else:
-            # has model keyword
-            if kwargs['model'] == 'cube':
-                kwargs['model'] = 'cube'
-                kwargs['texture'] = 'white_cube.png'
-            elif kwargs['model'] == 'cubic_six_faces':
-                # cubic with 6 face texture
-                kwargs['model'] = load_model('cubic6', common.model4t_folder)
-                kwargs['texture'] = load_texture('cubic6_colors',common.texture4t_folder)
-                #print(self._texture)
-                #print('here')
+        elif kwargs['model'] == 'sphere':
+            kwargs['texture'] = load_texture('grid_white',common.texture4t_folder)
+
+        elif kwargs['model'] == 'quad':
+            kwargs['texture'] = 'white_cube.png'
+            kwargs['double_sided'] = True
+
+        elif kwargs['model'] == 'cubic_six_faces':
+            # cubic with 6 face texture
+            kwargs['model'] = load_model('cubic6', common.model4t_folder)
+            kwargs['texture'] = load_texture('cubic6_colors',common.texture4t_folder)
+            #print(self._texture)
+            #print('here')
+        elif kwargs['model'] == 'sphere_inward':
+            kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
+            kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
+
 
         if not 'collider' in kwargs:
             kwargs['collider'] = 'box'

@@ -190,15 +190,30 @@ class Engine3D(Ursina, Repl):
         
         ShowBase.run(self)    
 
+    # add basic model
+
     def add_cube(self, *args, **kwargs):
-        
         e = Entity4t(model='cube', *args, **kwargs)
         return e
 
+    def add_sphere(self, *args, **kwargs):
+        e = Entity4t(model='sphere', *args, **kwargs)
+        return e
+
+    def add_quad(self, *args, **kwargs):
+        e = Entity4t(model='quad', *args, **kwargs)
+        return e
+
+    # add special model
 
     def add_cubic6(self, *args, **kwargs):
         e = Entity4t(model='cubic_six_faces', *args, **kwargs)
         return e
+
+    def add_sphere_inward(self, *args, **kwargs):
+        e = Entity4t(model='sphere_inward', *args, **kwargs)
+        return e
+
 
     ### property
     # @property
