@@ -11,6 +11,7 @@ __all__ = [
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
+            '預約執行',
             ]
 
 按住的鍵 = held_keys
@@ -66,7 +67,9 @@ def add_sphere_inward(*args, **kwargs):
 新增內面貼圖球體 = add_sphere_inward
 
 
-
+def 預約執行(函式, *args, 時間=1, **kwargs):
+    kwargs['delay'] = 時間
+    invoke(函式, *args, **kwargs)
 
 
 

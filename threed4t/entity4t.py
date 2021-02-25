@@ -52,6 +52,13 @@ class Entity4t(Entity):
     def 顏色動畫(self, 顏色, 延遲=0, 持續=1):    
         self.animate_color(顏色, delay=延遲 ,duration=持續)
 
+    def 淡出(self, 持續=1):
+        self.fade_out(duration=持續)
+
+    def 淡入(self, 持續=1):
+        self.fade_in(duration=持續)
+
+
     @property
     def 模型(self):
         return self.model 
@@ -96,7 +103,9 @@ class Entity4t(Entity):
         #print('tex ',common.ndarray_texure)
         #self.texture = tex
 
-
+    @property
+    def 動畫清單(self):
+        return self.animations 
 
 
 
