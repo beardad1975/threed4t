@@ -9,8 +9,8 @@ from .mouse4t import Mouse4T
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera',
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
-            '按住的鍵', '滑鼠','天空', '新增立方體', '新增立方體6面',
-            '新增球體內面','新增球體', '新增物體', '新增平面',
+            '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
+            '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
             ]
 
 按住的鍵 = held_keys
@@ -57,13 +57,13 @@ def add_cubic6(*args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
     return common.stage.add_cubic6(*args, **kwargs)
-新增立方體6面 = add_cubic6
+新增6面貼圖方塊 = add_cubic6
 
 def add_sphere_inward(*args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
     return common.stage.add_sphere_inward(*args, **kwargs)
-新增球體內面 = add_sphere_inward
+新增內面貼圖球體 = add_sphere_inward
 
 
 

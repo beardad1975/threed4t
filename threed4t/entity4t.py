@@ -1,5 +1,7 @@
 from ursina import *
+from panda3d.core import Texture
 from . import common
+import cv2
 
 class Entity4t(Entity):
     def __init__(self, *args, **kwargs):
@@ -16,6 +18,7 @@ class Entity4t(Entity):
         elif kwargs['model'] == 'quad':
             kwargs['texture'] = 'white_cube.png'
             kwargs['double_sided'] = True
+            pass
 
         elif kwargs['model'] == 'cubic_six_faces':
             # cubic with 6 face texture
@@ -61,13 +64,41 @@ class Entity4t(Entity):
         #self.setTextureOff(True)
 
     @property
-    def 紋理(self):
+    def 材質貼圖(self):
         self.setTextureOff(True)
         return self.texture 
 
     @模型.setter
-    def 紋理(self, value):
+    def 材質貼圖(self, value):
         self.texture = value
+
+    @property
+    def 多維陣列貼圖(self):
+        self.setTextureOff(True)
+        return self.texture 
+
+    @模型.setter
+    def 多維陣列貼圖(self, buf):
+        buf = cv2.flip(buf, -1)
+        width = buf.shape[1]
+        height = buf.shape[0]
+        #print(width, height)
+
+        
+        common.ndarray_texure.setup2dTexture(width,height,
+                Texture.T_unsigned_byte,Texture.F_rgb8)
+        common.ndarray_texure.setRamImage(buf)
+        
+        # remove texture
+        self.texture = None
+
+        self.setTexture(common.ndarray_texure, True)
+        #print('tex ',common.ndarray_texure)
+        #self.texture = tex
+
+
+
+
 
     @property
     def 上層物件(self):

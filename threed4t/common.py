@@ -1,4 +1,4 @@
-
+from panda3d.core import Texture
 
 WIN_WIDTH = 400
 WIN_HEIGHT = 600
@@ -27,3 +27,6 @@ from pathlib import Path
 package_folder = Path(__file__).parent
 model4t_folder = package_folder / 'model4t/'
 texture4t_folder = package_folder / 'texture4t/'
+
+# ndarray_texure
+ndarray_texure = Texture()
