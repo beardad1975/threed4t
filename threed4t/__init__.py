@@ -11,8 +11,16 @@ __all__ = [
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
-            '預約執行',
+            '預約執行', '新增文字', 
             ]
+
+
+Text.default_font = common.msjh_font_path
+print('字形設定: ', Text.default_font)
+
+
+
+
 
 按住的鍵 = held_keys
 滑鼠 = Mouse4T()
@@ -39,7 +47,13 @@ def add_cube(*args, **kwargs):
         Engine3D()
     return common.stage.add_cube(*args, **kwargs)
 新增立方體 = add_cube
-新增物體 = add_cube
+
+
+def add_entity(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_entity(*args, **kwargs)
+新增物體 = add_entity
 
 def add_sphere(*args, **kwargs):
     if not common.is_engine_created:
@@ -65,6 +79,14 @@ def add_sphere_inward(*args, **kwargs):
         Engine3D()
     return common.stage.add_sphere_inward(*args, **kwargs)
 新增內面貼圖球體 = add_sphere_inward
+
+def add_text(文字, *args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    kwargs['text'] = 文字
+    return common.stage.add_text(*args, **kwargs)
+新增文字 = add_text
+
 
 
 def 預約執行(函式, *args, 時間=1, **kwargs):

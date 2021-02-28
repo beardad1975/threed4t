@@ -1,4 +1,6 @@
 from panda3d.core import Texture
+import os 
+from pathlib import Path
 
 WIN_WIDTH = 400
 WIN_HEIGHT = 600
@@ -30,3 +32,7 @@ texture4t_folder = package_folder / 'texture4t/'
 
 # ndarray_texure
 ndarray_texure = Texture()
+
+# windows font path
+drive_letter = os.getenv('SystemDrive')[0].lower() 
+msjh_font_path =  '/{}/Windows/Fonts/msjh.ttc'.format(drive_letter)

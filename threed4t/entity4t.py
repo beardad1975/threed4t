@@ -8,7 +8,12 @@ class Entity4t(Entity):
         # handle default model and texture
         #custom model
         
-        if not 'model' in kwargs or kwargs['model'] == 'cube':
+        
+        #if not 'model' in kwargs or kwargs['model'] == 'cube':
+        if not 'model' in kwargs:
+            # add_entity
+            pass
+        elif kwargs['model'] == 'cube':
             # default cube model 
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
@@ -29,7 +34,8 @@ class Entity4t(Entity):
         elif kwargs['model'] == 'sphere_inward':
             kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
             kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
-
+        else:
+            pass
 
         if not 'collider' in kwargs:
             kwargs['collider'] = 'box'
@@ -338,6 +344,15 @@ class Entity4t(Entity):
     @全域縮放z.setter
     def 全域縮放z(self, value):
         self.world_scale_z = value 
+
+    @property
+    def 兩面貼圖(self):
+        return self.double_sided 
+
+    @兩面貼圖.setter
+    def 兩面貼圖(self, value):
+        self.double_sided = value
+
 
 
     

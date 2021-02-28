@@ -1,11 +1,15 @@
 from inspect import signature
 
 from ursina import *
+from ursina.scene import instance as scene
 from direct.showbase.ShowBase import ShowBase
+
 from . import common
 from .repl_panda import Repl
 from .entity4t import Entity4t
+from .text4t import Text4t
 from .assist import CorAssist
+
 
 import __main__
 
@@ -43,7 +47,7 @@ class Engine3D(Ursina, Repl):
 
         #ursina 
         self.window = window
-
+        
 
         if common.WIN_MIN_WIDTH < 寬 < common.WIN_MAX_WIDTH:
             self.win_width = round(寬,0)
@@ -73,6 +77,9 @@ class Engine3D(Ursina, Repl):
         self.window.position = (50, 50)
 
         print(f"建立舞台(寬{self.win_width}x高{self.win_height})")
+
+        self.空間場景 = scene
+        self.介面 = camera.ui
 
         #cor assist
         self.cor_assist = CorAssist()
@@ -196,6 +203,10 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='cube', *args, **kwargs)
         return e
 
+    def add_entity(self, *args, **kwargs):
+        e = Entity4t( *args, **kwargs)
+        return e
+
     def add_sphere(self, *args, **kwargs):
         e = Entity4t(model='sphere', *args, **kwargs)
         return e
@@ -214,17 +225,21 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='sphere_inward', *args, **kwargs)
         return e
 
+    
+    def add_text(self, *args, **kwargs):
+        t = Text4t(*args, **kwargs)
+        return t
 
-    ### property
-    # @property
-    # def 全螢幕(self):
-    #     return self.window.fullscreen 
+    ## property
+    @property
+    def 全螢幕(self):
+        return self.window.fullscreen 
 
-    # @全螢幕.setter
-    # def 全螢幕(self, value):
-    #     if value:
-    #         self.window.fullscreen = True
-    #     else:
-    #         self.window.fullscreen = False 
+    @全螢幕.setter
+    def 全螢幕(self, value):
+        if value:
+            self.window.fullscreen = True
+        else:
+            self.window.fullscreen = False 
 
 
