@@ -68,6 +68,11 @@ class Entity4t(Entity):
     def 淡入(self, 持續=1):
         self.fade_in(duration=持續)
 
+    def 閃爍(self, 持續=0.5):
+        self.blink(duration=持續)
+
+    def 晃動(self):
+        self.shake()
 
     @property
     def 模型(self):
