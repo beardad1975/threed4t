@@ -225,10 +225,21 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='sphere_inward', *args, **kwargs)
         return e
 
+    def add_cube_line(self, *args, **kwargs):
+        e = Entity4t(model='cube_line', *args, **kwargs)
+        return e
+
+    def add_tetrahedron_line(self, *args, **kwargs):
+        e = Entity4t(model='tetrahedron_line', *args, **kwargs)
+        return e
+
     
     def add_text(self, *args, **kwargs):
         t = Text4t(*args, **kwargs)
         return t
+
+
+
 
     ## property
     @property
@@ -237,9 +248,57 @@ class Engine3D(Ursina, Repl):
 
     @全螢幕.setter
     def 全螢幕(self, value):
-        if value:
-            self.window.fullscreen = True
-        else:
-            self.window.fullscreen = False 
+        self.window.fullscreen = value
 
 
+    @property
+    def 視窗邊框(self):
+        return not self.window.borderless 
+
+    @視窗邊框.setter
+    def 視窗邊框(self, value):
+       self.window.borderless = not value 
+
+    @property
+    def 背景顏色(self):
+        return self.window.color 
+
+    @背景顏色.setter
+    def 背景顏色(self, value):
+        self.window.color = value
+
+    @property
+    def 介面上邊(self):
+        return self.window.top 
+
+    @property
+    def 介面中心(self):
+        return self.window.center 
+
+    @property
+    def 介面下邊(self):
+        return Vec2(0, -.5) 
+
+    @property
+    def 介面左邊(self):
+        return self.window.left 
+
+    @property
+    def 介面右邊(self):
+        return self.window.right
+
+    @property
+    def 介面右上(self):
+        return self.window.top_right
+
+    @property
+    def 介面左上(self):
+        return self.window.top_left
+
+    @property
+    def 介面右下(self):
+        return self.window.bottom_right
+
+    @property
+    def 介面左下(self):
+        return self.window.bottom_left

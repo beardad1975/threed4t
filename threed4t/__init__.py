@@ -11,7 +11,7 @@ __all__ = [
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
-            '預約執行', '新增文字', 
+            '預約執行', '新增文字', '新增立方體線框', '新增4面體線框'
             ]
 
 
@@ -47,6 +47,18 @@ def add_cube(*args, **kwargs):
         Engine3D()
     return common.stage.add_cube(*args, **kwargs)
 新增立方體 = add_cube
+
+def add_cube_line(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_cube_line(*args, **kwargs)
+新增立方體線框 = add_cube_line
+
+def add_tetrahedron_line(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_tetrahedron_line(*args, **kwargs)
+新增4面體線框 = add_tetrahedron_line
 
 
 def add_entity(*args, **kwargs):

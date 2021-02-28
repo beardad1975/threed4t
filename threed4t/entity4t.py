@@ -34,6 +34,10 @@ class Entity4t(Entity):
         elif kwargs['model'] == 'sphere_inward':
             kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
             kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
+        elif kwargs['model'] == 'cube_line':
+            kwargs['model'] = load_model('cube_line', common.model4t_folder)  
+        elif kwargs['model'] == 'tetrahedron_line':
+            kwargs['model'] = load_model('tetrahedron_line', common.model4t_folder)       
         else:
             pass
 
