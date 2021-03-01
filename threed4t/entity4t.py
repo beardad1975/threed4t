@@ -22,7 +22,7 @@ class Entity4t(Entity):
 
         elif kwargs['model'] == 'quad':
             kwargs['texture'] = 'white_cube.png'
-            kwargs['double_sided'] = True
+            #kwargs['double_sided'] = True
             pass
 
         elif kwargs['model'] == 'cubic_six_faces':

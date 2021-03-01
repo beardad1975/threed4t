@@ -86,6 +86,7 @@ class Engine3D(Ursina, Repl):
 
         #editor camera
         self.editor_camera = EditorCamera()
+        self.editor_camera.gizmo.enabled = False
 
         # custom event handler
         self.user_update_handler = None 

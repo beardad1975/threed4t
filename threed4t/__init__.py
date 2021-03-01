@@ -5,14 +5,18 @@ from ursina import *
 from . import common
 from .engine import Engine3D
 from .mouse4t import Mouse4T
+from .sequence4t import 動畫組合
+from .audio4t import 聲音
+
 模擬3D引擎 = Engine3D
+
 __all__ = [ 
-            '模擬3D引擎', 'Entity', 'EditorCamera',
+            '模擬3D引擎', 'Entity', 'EditorCamera', '載入聲音',
             '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
             '預約執行', '新增文字', '新增立方體線框', '新增4面體線框',
-            '動畫組合', '動作',
+            '動畫組合', '動作', 
             ]
 
 
@@ -20,7 +24,7 @@ Text.default_font = common.msjh_font_path
 print('字形設定: ', Text.default_font)
 
 
-動畫組合 = Sequence
+#動畫組合 = Sequence
 動作 = Func
 
 
