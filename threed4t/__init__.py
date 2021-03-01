@@ -6,7 +6,7 @@ from . import common
 from .engine import Engine3D
 from .mouse4t import Mouse4T
 from .sequence4t import 動畫組合
-from .audio4t import 聲音
+from .audio4t import 載入聲音
 
 模擬3D引擎 = Engine3D
 

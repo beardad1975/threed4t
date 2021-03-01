@@ -182,7 +182,7 @@ class Engine3D(Ursina, Repl):
         
         #self.lazy_setup()
         self.collect_user_event_handlers()
-        self.start_repl()
+        #self.start_repl()
 
         
 
