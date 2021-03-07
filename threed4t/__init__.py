@@ -1,12 +1,13 @@
 
 from ursina import *
-
+from ursina.shaders import lit_with_shadows_shader, normals_shader
 
 from . import common
 from .engine import Engine3D
 from .mouse4t import Mouse4T
 from .sequence4t import 動畫組合
 from .audio4t import 載入聲音
+
 
 模擬3D引擎 = Engine3D
 
@@ -16,13 +17,16 @@ __all__ = [
             '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
             '預約執行', '新增文字', '新增立方體線框', '新增4面體線框',
-            '動畫組合', '動作', 
+            '動畫組合', '動作', '光影著色器', '法線著色器',
             ]
 
 
 Text.default_font = common.msjh_font_path
 print('字形設定: ', Text.default_font)
 
+# shader
+光影著色器 = lit_with_shadows_shader
+法線著色器 = normals_shader
 
 #動畫組合 = Sequence
 動作 = Func

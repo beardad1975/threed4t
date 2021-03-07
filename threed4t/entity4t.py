@@ -41,8 +41,8 @@ class Entity4t(Entity):
         else:
             pass
 
-        if not 'collider' in kwargs:
-            kwargs['collider'] = 'box'
+        #if not 'collider' in kwargs:
+        #    kwargs['collider'] = 'box'
         
 
 
@@ -51,25 +51,25 @@ class Entity4t(Entity):
 
     def 位置動畫(self, 座標, 延遲=0, 持續=1):
         #座標 = Vec3(座標差[0], 座標差[1], 座標差[2],) + self.position
-        self.animate_position(座標, delay=延遲 ,duration=持續)
+        self.animate_position(座標, delay=延遲 ,duration=持續, curve=curve.linear)
 
     def 旋轉動畫(self, 角度, 延遲=0, 持續=1):    
-        self.animate_rotation(角度, delay=延遲 ,duration=持續)
+        self.animate_rotation(角度, delay=延遲 ,duration=持續, curve=curve.linear)
 
     def 縮放動畫(self, 比例, 延遲=0, 持續=1):    
-        self.animate_scale(比例, delay=延遲 ,duration=持續)
+        self.animate_scale(比例, delay=延遲 ,duration=持續, curve=curve.linear)
 
     def 顏色動畫(self, 顏色, 延遲=0, 持續=1):    
-        self.animate_color(顏色, delay=延遲 ,duration=持續)
+        self.animate_color(顏色, delay=延遲 ,duration=持續, curve=curve.linear)
 
     def 淡出(self, 持續=1):
         self.fade_out(duration=持續)
 
     def 淡入(self, 持續=1):
-        self.fade_in(duration=持續)
+        self.fade_in(duration=持續, curve=curve.linear)
 
     def 閃爍(self, 持續=0.5):
-        self.blink(duration=持續)
+        self.blink(duration=持續, curve=curve.linear)
 
     def 晃動(self):
         self.shake()
@@ -362,6 +362,12 @@ class Entity4t(Entity):
     def 兩面貼圖(self, value):
         self.double_sided = value
 
+    @property
+    def 著色器(self):
+        return self.shader 
 
+    @著色器.setter
+    def 著色器(self, value):
+        self.shader = value
 
     
