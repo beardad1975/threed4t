@@ -54,7 +54,7 @@ class Text4t(Text, Entity4t):
     # def 淡入(self, 持續=1):
     #     self.fade_in(duration=持續)
 
-    def 逐字動畫(self, 速度=0.3):
+    def 逐字動畫(self, 速度=0.2):
         self.appear(speed=速度)
 
     @property
