@@ -22,6 +22,9 @@ class Text4t(Text, Entity4t):
                 Text.size = .1  # 中
         else:
             Text.size = .1  # default 中
+
+        
+
         print('Text.size :', Text.size)
 
         Text.default_resolution = 1080 * Text.size
@@ -56,6 +59,15 @@ class Text4t(Text, Entity4t):
 
     def 逐字動畫(self, 速度=0.2):
         self.appear(speed=速度)
+
+    @property
+    def 背景(self):
+        return self.background
+
+    @背景.setter
+    def 背景(self, value):
+        self.background = value 
+
 
     @property
     def 文字(self):
