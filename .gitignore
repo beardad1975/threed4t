@@ -4,5 +4,7 @@ __pycache__
 build
 dist
 */*.pyc
-threed4t.egg-info/*
+*.egg-info/
+
+*.egg
 
