@@ -5,7 +5,7 @@ import setuptools
 
 setuptools.setup(
     name="threed4t",
-    version="0.0.1",
+    version="0.0.2",
     author="Wen-Hung, Chang 張文宏",
     author_email="beardad1975@nmes.tyc.edu.tw",
     description="3d learning module for Teenagers",
@@ -16,7 +16,8 @@ setuptools.setup(
     platforms=["Windows"],
     python_requires=">=3.5",
     packages=['threed4t','模擬3D模組'],
-    install_requires = ['ursina>=3.1.2', ],
+    package_data={'threed4t': ['model4t/*','texture4t/*']},
+    install_requires = ['ursina>=3.4.0', ],
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
