@@ -41,8 +41,8 @@ class Entity4t(Entity):
         else:
             pass
 
-        #if not 'collider' in kwargs:
-        #    kwargs['collider'] = 'box'
+        if not 'collider' in kwargs:
+           kwargs['collider'] = 'box'
         
 
 
@@ -370,4 +370,10 @@ class Entity4t(Entity):
     def 著色器(self, value):
         self.shader = value
 
-    
+    @property
+    def 不可刪除(self):
+        return self.eternal
+
+    @不可刪除.setter
+    def 不可刪除(self, value):
+        self.eternal = value    

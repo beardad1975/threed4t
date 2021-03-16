@@ -15,14 +15,17 @@ class Mouse4T:
         return mouse.position
 
     @property
-    def 碰觸物體(self):
+    def 接觸物體(self):
         return mouse.hovered_entity 
 
     @property
-    def 碰觸點(self):
+    def 接觸點(self):
         return mouse.point 
 
     @property
     def 按下左鍵(self):
         return mouse.left
 
+    @property
+    def 接觸面法線(self):
+        return mouse.normal
