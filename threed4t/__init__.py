@@ -1,6 +1,7 @@
 
 from ursina import *
 from ursina.shaders import lit_with_shadows_shader, normals_shader
+from ursina.prefabs.first_person_controller import FirstPersonController
 
 from . import common
 from .engine import Engine3D
@@ -13,11 +14,12 @@ from .audio4t import 載入聲音
 
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera', '載入聲音',
-            '模擬進行中','模擬主迴圈', 'color','Vec3','Vec4','Vec2',
-            '按住的鍵', '滑鼠','天空', '新增立方體', '新增6面貼圖方塊',
+            '模擬進行中','模擬主迴圈', '色彩','Vec3','Vec4','Vec2',
+            '按住的鍵', '滑鼠', '新增立方體', '新增6面貼圖方塊',
             '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
             '預約執行', '新增文字', '新增立方體線框', '新增4面體線框',
-            '動畫組合', '動作', '光影著色器', '法線著色器','刪除物體'
+            '動畫組合', '動作', '光影著色器', '法線著色器','刪除物體',
+            '第1人稱視角',
             ]
 
 
@@ -31,13 +33,25 @@ print('字形設定: ', Text.default_font)
 #動畫組合 = Sequence
 動作 = Func
 
+# color
+色彩 = color
+
 
 按住的鍵 = held_keys
 滑鼠 = Mouse4T()
-天空 = Sky
+
 ######## top level function
 # import __main__
 # __main__.按住的鍵 = held_keys
+
+
+
+def 第1人稱視角():
+    if not common.is_engine_created:
+        Engine3D()
+
+    common.stage.editor_camera.enabled = False
+    common.player = FirstPersonController() 
 
 
 def simulate():

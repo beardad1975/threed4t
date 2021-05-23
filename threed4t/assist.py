@@ -1,4 +1,4 @@
-from panda3d.core import PerspectiveLens, OrthographicLens, LensNode, NodePath
+#from panda3d.core import PerspectiveLens, OrthographicLens, LensNode, NodePath
 
 from ursina import *
 from . import common
@@ -33,6 +33,9 @@ class CorMark(Text):
 
     def update(self):        
         self.position = self.cone.screen_position
+        #self.position = (0,0.3,0)
+        
+        #print(self.position)
 
 
 class CorAssist:

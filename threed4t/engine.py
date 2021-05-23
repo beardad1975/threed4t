@@ -55,13 +55,17 @@ class Engine3D(Ursina, Repl):
             self.win_width = common.WIN_MIN_WIDTH
         elif 寬 > common.WIN_MAX_WIDTH :
             self.win_width = common.WIN_MAX_WIDTH
+        else:
+            self.win_width = common.WIN_WIDTH
 
         if common.WIN_MIN_HEIGHT < 高 < common.WIN_MAX_HEIGHT:
             self.win_height = round(高,0)
         elif 高 < common.WIN_MIN_HEIGHT :
             self.win_height = common.WIN_MIN_HEIGHT
         elif 高 > common.WIN_MAX_HEIGHT :
-            self.win_height = common.WIN_MAX_HEIGHT        
+            self.win_height = common.WIN_MAX_HEIGHT   
+        else:
+            self.win_height = common.WIN_HEIGHT    
 
 
         Ursina.__init__(self)
@@ -81,8 +85,7 @@ class Engine3D(Ursina, Repl):
         self.空間場景 = scene
         self.介面 = camera.ui
 
-        #cor assist
-        self.cor_assist = CorAssist()
+        
 
         #editor camera
         self.editor_camera = EditorCamera()
@@ -94,6 +97,8 @@ class Engine3D(Ursina, Repl):
         self.user_key_release_handler = None
         #self.user_key_hold_handler = None
 
+        #cor assist 
+        self.cor_assist = CorAssist()
 
     def input_up(self, key):
         if self.user_key_release_handler:
@@ -120,6 +125,9 @@ class Engine3D(Ursina, Repl):
     def input(self, key):
         if key == 'control':
             self.cor_assist.enabled = not self.cor_assist.enabled
+
+        if key == 'escape' :
+            application.quit()
 
         if self.user_key_press_handler :
             #print('do key press')
