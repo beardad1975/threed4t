@@ -82,8 +82,8 @@ class Engine3D(Ursina, Repl):
 
         print(f"建立舞台(寬{self.win_width}x高{self.win_height})")
 
-        self.空間場景 = scene
-        self.介面 = camera.ui
+        self.scene = scene
+        self.camera_ui = camera.ui
 
         
 
@@ -311,3 +311,11 @@ class Engine3D(Ursina, Repl):
     @property
     def 介面左下(self):
         return self.window.bottom_left
+
+    @property
+    def 空間場景(self):
+        return self.scene
+
+    @property
+    def 使用者介面(self):
+        return self.camera_ui

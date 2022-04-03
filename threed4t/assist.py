@@ -44,37 +44,49 @@ class CorAssist:
         common.cor_assist = self
 
         self._enabled = False
-        self.grid = Entity(model=Grid(10, 10), scale=10, color=color.rgb(180,180,180))
+        self.grid = Entity(model=Grid(40, 40), scale=40, 
+                            rotation=(90, 0, 0), color=color.rgba(150,150,150,150))
+        # self.grid2 = Entity(model=Grid(40, 40), scale=40, 
+        #                     rotation=(90, 0, 0), color=color.rgb(100,100,100, 200))
 
         # line mesh 
         verts = (Vec3(5,0,0), Vec3(-5,0,0))
         tris = ((0,1), )
         self.line_x = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.orange)
+                             color=color.rgba(255,165,0))
 
         verts = (Vec3(0,5,0), Vec3(0,-5,0))
         tris = ((0,1), )
         self.line_y = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.green)
+                             color=color.rgba(0,255,0))
 
         verts = (Vec3(0,0,5), Vec3(0,0,-5))
         tris = ((0,1), )
         self.line_z = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.rgb(180,0,0))
+                             color=color.rgba(255,0,0))
 
 
 
         self.dots = []
         for i in range(-5, 6):
-            e = Entity(model='cube', scale=0.1, color=color.rgb(180,0,0),position=(0,0,i))
+            e = Entity(model='cube', scale=0.1, color=color.rgba(255,165,0,150),position=(i,0,0))
             self.dots.append(e)
+
+            e = Entity(model='cube', scale=0.1, color=color.rgba(0,255,0,150),position=(0,i,0))
+            self.dots.append(e)
+
+            e = Entity(model='cube', scale=0.1, color=color.rgba(255,0,0,150),position=(0,0,i))
+            self.dots.append(e)
+
+
+
 
         # self.compass_cube = CompassCube()
 
         #cone
-        self.cone_x = Entity(model=Cone(4, direction=(1,0,0)), color=color.orange,position=(5,0,0),scale=0.5)
-        self.cone_y = Entity(model=Cone(4, direction=(0,1,0)), color=color.green,position=(0,5,0),scale=0.5)
-        self.cone_z = Entity(model=Cone(4, direction=(0,0,1)), color=color.rgb(180,0,0),position=(0,0,5),scale=0.5)
+        self.cone_x = Entity(model=Cone(4, direction=(1,0,0)), color=color.rgba(255,165,0,150),position=(5,0,0),scale=0.5)
+        self.cone_y = Entity(model=Cone(4, direction=(0,1,0)), color=color.rgba(0,255,0,150),position=(0,5,0),scale=0.5)
+        self.cone_z = Entity(model=Cone(4, direction=(0,0,1)), color=color.rgba(255,0,0,150),position=(0,0,5),scale=0.5)
 
         # cor mark 
         self.mark_x = CorMark('x')

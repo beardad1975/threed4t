@@ -132,6 +132,22 @@ class Entity4t(Entity):
     def 上層物件(self, value):
         self.parent = value
 
+    @property
+    def 父物件(self):
+        return self.parent
+
+    @模型.setter
+    def 父物件(self, value):
+        self.parent = value
+
+    @property
+    def 母物件(self):
+        return self.parent
+
+    @模型.setter
+    def 母物件(self, value):
+        self.parent = value
+
     # enabled
     @property
     def 有效狀態(self):
@@ -257,37 +273,37 @@ class Entity4t(Entity):
     def 旋轉z(self, value):
         self.rotation_z = value
 
-    @property
-    def 全域旋轉(self):
-        return self.world_rotation 
+    # @property
+    # def 全域旋轉(self):
+    #     return self.world_rotation 
 
-    @全域旋轉.setter
-    def 全域旋轉(self, value):
-        self.world_rotation = value
+    # @全域旋轉.setter
+    # def 全域旋轉(self, value):
+    #     self.world_rotation = value
 
-    @property
-    def 全域旋轉x(self):
-        return self.world_rotation_x 
+    # @property
+    # def 全域旋轉x(self):
+    #     return self.world_rotation_x 
 
-    @全域旋轉x.setter
-    def 全域旋轉x(self, value):
-        self.world_rotation_x = value
+    # @全域旋轉x.setter
+    # def 全域旋轉x(self, value):
+    #     self.world_rotation_x = value
 
-    @property
-    def 全域旋轉y(self):
-        return self.world_rotation_y 
+    # @property
+    # def 全域旋轉y(self):
+    #     return self.world_rotation_y 
 
-    @全域旋轉y.setter
-    def 全域旋轉y(self, value):
-        self.world_rotation_y = value
+    # @全域旋轉y.setter
+    # def 全域旋轉y(self, value):
+    #     self.world_rotation_y = value
 
-    @property
-    def 全域旋轉z(self):
-        return self.world_rotation_z 
+    # @property
+    # def 全域旋轉z(self):
+    #     return self.world_rotation_z 
 
-    @全域旋轉z.setter
-    def 全域旋轉z(self, value):
-        self.world_rotation_z = value
+    # @全域旋轉z.setter
+    # def 全域旋轉z(self, value):
+    #     self.world_rotation_z = value
 
     # scale
     @property
