@@ -1,7 +1,10 @@
 from ursina import *
+#from ursina.shaders import lit_with_shadows_shader
 from panda3d.core import Texture
 from . import common
 import cv2
+
+
 
 class Entity4t(Entity):
     def __init__(self, *args, **kwargs):
@@ -18,12 +21,15 @@ class Entity4t(Entity):
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
         elif kwargs['model'] == 'sphere':
-            kwargs['texture'] = load_texture('grid_white',common.texture4t_folder)
+            kwargs['texture'] = load_texture('white_gradient',common.texture4t_folder)
+            
 
         elif kwargs['model'] == 'quad':
-            kwargs['texture'] = 'white_cube.png'
-            #kwargs['double_sided'] = True
-            pass
+            kwargs['double_sided'] = True
+
+        elif kwargs['model'] == 'circle':
+            kwargs['double_sided'] = True
+            
 
         elif kwargs['model'] == 'cubic_six_faces':
             # cubic with 6 face texture
@@ -34,10 +40,7 @@ class Entity4t(Entity):
         elif kwargs['model'] == 'sphere_inward':
             kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
             kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
-        elif kwargs['model'] == 'cube_line':
-            kwargs['model'] = load_model('cube_line', common.model4t_folder)  
-        elif kwargs['model'] == 'tetrahedron_line':
-            kwargs['model'] = load_model('tetrahedron_line', common.model4t_folder)       
+              
         else:
             pass
 
@@ -74,6 +77,12 @@ class Entity4t(Entity):
     def 晃動(self):
         self.shake()
 
+    def 面朝(self, target, 軸='forward'):
+        self.look_at(target, 軸)
+
+    def 結合子代(self):
+        self.combine()
+
     @property
     def 模型(self):
         return self.model 
@@ -90,7 +99,7 @@ class Entity4t(Entity):
         self.setTextureOff(True)
         return self.texture 
 
-    @模型.setter
+    @材質貼圖.setter
     def 材質貼圖(self, value):
         self.texture = value
 
@@ -99,7 +108,7 @@ class Entity4t(Entity):
         self.setTextureOff(True)
         return self.texture 
 
-    @模型.setter
+    @多維陣列貼圖.setter
     def 多維陣列貼圖(self, buf):
         buf = cv2.flip(buf, -1)
         width = buf.shape[1]
@@ -128,25 +137,18 @@ class Entity4t(Entity):
     def 上層物件(self):
         return self.parent
 
-    @模型.setter
+    @上層物件.setter
     def 上層物件(self, value):
         self.parent = value
 
     @property
-    def 父物件(self):
+    def 親代(self):
         return self.parent
 
-    @模型.setter
-    def 父物件(self, value):
+    @親代.setter
+    def 親代(self, value):
         self.parent = value
 
-    @property
-    def 母物件(self):
-        return self.parent
-
-    @模型.setter
-    def 母物件(self, value):
-        self.parent = value
 
     # enabled
     @property

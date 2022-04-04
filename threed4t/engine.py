@@ -89,7 +89,7 @@ class Engine3D(Ursina, Repl):
 
         #editor camera
         self.editor_camera = EditorCamera()
-        self.editor_camera.gizmo.enabled = False
+        #self.editor_camera.gizmo.enabled = False
 
         # custom event handler
         self.user_update_handler = None 
@@ -224,6 +224,19 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='quad', *args, **kwargs)
         return e
 
+    def add_circle(self, *args, **kwargs):
+        e = Entity4t(model='circle', *args, **kwargs)
+        return e
+
+    def add_arrow(self, *args, **kwargs):
+        e = Entity4t(model='arrow', *args, **kwargs)
+        return e
+
+    def add_diamond(self, *args, **kwargs):
+        e = Entity4t(model='diamond', *args, **kwargs)
+        return e
+
+
     # add special model
 
     def add_cubic6(self, *args, **kwargs):
@@ -234,12 +247,16 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='sphere_inward', *args, **kwargs)
         return e
 
-    def add_cube_line(self, *args, **kwargs):
-        e = Entity4t(model='cube_line', *args, **kwargs)
+    def add_wireframe_cube(self, *args, **kwargs):
+        e = Entity4t(model='wireframe_cube', *args, **kwargs)
         return e
 
-    def add_tetrahedron_line(self, *args, **kwargs):
-        e = Entity4t(model='tetrahedron_line', *args, **kwargs)
+    def add_wireframe_quad(self, *args, **kwargs):
+        e = Entity4t(model='wireframe_quad', *args, **kwargs)
+        return e
+
+    def add_line(self, *args, **kwargs):
+        e = Entity4t(model='line', *args, **kwargs)
         return e
 
     

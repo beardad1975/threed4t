@@ -1,25 +1,28 @@
 
 from ursina import *
-from ursina.shaders import lit_with_shadows_shader, normals_shader
+from ursina.shaders import  lit_with_shadows_shader, normals_shader
+#Entity.default_shader = basic_lighting_shader
+#Entity.default_shader = lit_with_shadows_shader
 from ursina.prefabs.first_person_controller import FirstPersonController
-
+from ursina.prefabs.platformer_controller_2d import PlatformerController2d
 from . import common
 from .engine import Engine3D
 from .mouse4t import Mouse4T
 from .sequence4t import 動畫組合
 from .audio4t import 載入聲音
-
+from .light4t import PointLight4t, DirectionalLight4t, AmbientLight4t
 
 模擬3D引擎 = Engine3D
 
 __all__ = [ 
             '模擬3D引擎', 'Entity', 'EditorCamera', '載入聲音',
-            '模擬進行中','模擬主迴圈', '色彩','Vec3','Vec4','Vec2',
+            '模擬進行中','模擬主迴圈', '色彩','color','Vec3','Vec4','Vec2',
             '按住的鍵', '滑鼠', '新增立方體', '新增6面貼圖方塊',
-            '新增內面貼圖球體','新增球體', '新增物體', '新增平面',
-            '預約執行', '新增文字', '新增立方體線框', '新增4面體線框',
-            '動畫組合', '動作', '光影著色器', '法線著色器','刪除物體',
-            '第1人稱視角', '複製物體',
+            '新增內面貼圖球體','新增球體', '新增物體', '新增方形平面', '新增直線',
+            '新增圓形平面', '新增箭頭', '新增菱形體',
+            '預約執行', '新增文字', '新增立方體線框', '新增方形線框',
+            '動畫組合', '動作', '光影著色器', '法線著色器','刪除',
+            '第1人稱視角操作', '複製', '點光源', '平行光', '環境光', '平台跳躍2D操作'
             ]
 
 
@@ -46,12 +49,29 @@ print('字形設定: ', Text.default_font)
 
 
 
-def 第1人稱視角():
+def 第1人稱視角操作():
     if not common.is_engine_created:
         Engine3D()
 
     common.stage.editor_camera.enabled = False
-    common.player = FirstPersonController() 
+    common.player = FirstPersonController(y=2, origin_y=-.5) 
+
+    return common.player
+
+
+def 平台跳躍2D操作(圖片=''): 
+    if not common.is_engine_created:
+        Engine3D()
+
+
+    #common.stage.editor_camera.enabled = False
+    if 圖片 == '':
+        common.player = PlatformerController2d(y=2, scale_y=1, max_jumps=2)
+    else:
+        common.player = PlatformerController2d(model='quad', texture=圖片,z=0.1, y=2, 
+                                        scale_y=1, max_jumps=2, origin_y=-.5,  double_sided=True)
+
+    return common.player
 
 
 def simulate():
@@ -72,19 +92,6 @@ def add_cube(*args, **kwargs):
     return common.stage.add_cube(*args, **kwargs)
 新增立方體 = add_cube
 
-def add_cube_line(*args, **kwargs):
-    if not common.is_engine_created:
-        Engine3D()
-    return common.stage.add_cube_line(*args, **kwargs)
-新增立方體線框 = add_cube_line
-
-def add_tetrahedron_line(*args, **kwargs):
-    if not common.is_engine_created:
-        Engine3D()
-    return common.stage.add_tetrahedron_line(*args, **kwargs)
-新增4面體線框 = add_tetrahedron_line
-
-
 def add_entity(*args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
@@ -97,11 +104,49 @@ def add_sphere(*args, **kwargs):
     return common.stage.add_sphere(*args, **kwargs)
 新增球體 = add_sphere
 
+
+def add_wireframe_cube(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_wireframe_cube(*args, **kwargs)
+新增立方體線框 = add_wireframe_cube
+
+def add_wireframe_quad(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_wireframe_quad(*args, **kwargs)
+新增方形線框 = add_wireframe_quad
+
+def add_line(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_line(*args, **kwargs)
+新增直線 = add_line
+
+
 def add_quad(*args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
     return common.stage.add_quad(*args, **kwargs)
-新增平面 = add_quad
+新增方形平面 = add_quad
+
+def add_circle(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_circle(*args, **kwargs)
+新增圓形平面 = add_circle
+
+def add_arrow(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_arrow(*args, **kwargs)
+新增箭頭 = add_arrow
+
+def add_diamond(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_diamond(*args, **kwargs)
+新增菱形體 = add_diamond
 
 
 def add_cubic6(*args, **kwargs):
@@ -123,8 +168,15 @@ def add_text(文字, *args, **kwargs):
     return common.stage.add_text(*args, **kwargs)
 新增文字 = add_text
 
-複製物體 = duplicate
-刪除物體 = destroy
+複製 = duplicate
+刪除 = destroy
+#結合 = combine
+
+
+點光源 = PointLight4t
+平行光 = DirectionalLight4t
+環境光 = AmbientLight4t
+#聚光燈 = SpotLight
 
 def 預約執行(函式, *args, 時間=1, **kwargs):
     kwargs['delay'] = 時間
