@@ -17,7 +17,7 @@ setuptools.setup(
     python_requires=">=3.5",
     packages=['threed4t','模擬3D模組'],
     package_data={'threed4t': ['model4t/*','texture4t/*']},
-    install_requires = ['ursina == 3.5.0', ],
+    install_requires = ['ursina == 4.1.1', ],
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
