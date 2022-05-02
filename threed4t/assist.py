@@ -70,16 +70,15 @@ class CorAssist:
         self.dots = []
         for i in range(-5, 6):
             if i != 0:
-                e = Entity(model='cube', scale=0.1, color=color.rgba(255,165,0,150),position=(i,0,0))
-                self.dots.append(e)
+                #e = Entity(model='cube', scale=0.1, color=color.rgba(255,165,0,150),position=(i,0,0))
+                #self.dots.append(e)
 
             
-            e = Entity(model='cube', scale=0.1, color=color.rgba(0,255,0,150),position=(0,i,0))
-            self.dots.append(e)
-
-            if i != 0:
-                e = Entity(model='cube', scale=0.1, color=color.rgba(255,0,0,150),position=(0,0,i))
+                e = Entity(model='cube', scale=0.1, color=color.rgba(0,255,0,150),position=(0,i,0))
                 self.dots.append(e)
+
+                #e = Entity(model='cube', scale=0.1, color=color.rgba(255,0,0,150),position=(0,0,i))
+                #self.dots.append(e)
 
 
 
