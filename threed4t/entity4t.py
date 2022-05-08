@@ -62,7 +62,7 @@ class Entity4t(Entity):
             #print('here')
         elif kwargs['model'] == 'sphere_inward':
             kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
-            kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
+            kwargs['texture'] = load_texture('test_grid.jpg',common.texture4t_folder)
         elif kwargs['model'] == 'line':
             length = kwargs['length']
             thickness = kwargs['thickness']
