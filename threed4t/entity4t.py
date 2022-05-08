@@ -29,7 +29,30 @@ class Entity4t(Entity):
 
         elif kwargs['model'] == 'circle':
             kwargs['double_sided'] = True
-            
+
+        elif kwargs['model'] == 'cylinder':
+            kwargs['model'] = Cylinder(20, start=-0.5) 
+
+        elif kwargs['model'] == 'polygon':
+            side = int(kwargs['side'])
+            if side < 3 :
+                print('多邊形的邊需大於3')
+                return
+            kwargs['model'] = Circle(side) 
+
+        elif kwargs['model'] == 'polygon_line':
+            side = int(kwargs['side'])
+            if side < 3 :
+                print('多邊形線的邊需大於3')
+                return
+            kwargs['model'] = Circle(side, mode='line', thickness=3)
+
+        elif kwargs['model'] == 'prism':
+            side = int(kwargs['side'])
+            if side < 3 :
+                print('角柱的邊需大於3')
+                return
+            kwargs['model'] = Cylinder(side, start=-0.5)  
 
         elif kwargs['model'] == 'cubic_six_faces':
             # cubic with 6 face texture
@@ -40,7 +63,19 @@ class Entity4t(Entity):
         elif kwargs['model'] == 'sphere_inward':
             kwargs['model'] = load_model('sphere_inward', common.model4t_folder)
             kwargs['texture'] = load_texture('abc_grid',common.texture4t_folder)
-              
+        elif kwargs['model'] == 'line':
+            length = kwargs['length']
+            thickness = kwargs['thickness']
+            # line mesh
+            if length <= 0 or thickness <= 0 :
+                print('線長及線寬需大於0')
+                return
+            half_length = length / 2
+            verts = (Vec3(0, half_length, 0), Vec3(0, -half_length, 0))
+            tris = ((0,1), )
+            kwargs['model'] = Mesh(vertices=verts, triangles=tris, mode='line', thickness=thickness)
+
+
         else:
             pass
 

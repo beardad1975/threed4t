@@ -22,7 +22,8 @@ __all__ = [
             '新增圓形平面', '新增箭頭', '新增菱形體',
             '預約執行', '新增文字', '新增立方體線框', '新增方形線框',
             '動畫組合', '動作', '光影著色器', '法線著色器','刪除',
-            '第1人稱視角操作', '複製', '點光源', '平行光', '環境光', '平台跳躍2D操作'
+            '第1人稱視角操作', '複製', '點光源', '平行光', '環境光', '平台跳躍2D操作',
+            '新增圓柱', '新增角柱', '新增多邊形平面', '新增多邊形線',
             ]
 
 
@@ -104,6 +105,17 @@ def add_sphere(*args, **kwargs):
     return common.stage.add_sphere(*args, **kwargs)
 新增球體 = add_sphere
 
+def add_cylinder(*args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_cylinder(*args, **kwargs)
+新增圓柱 = add_cylinder
+
+def add_prism(角=5, *args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_prism(side=角, *args, **kwargs)
+新增角柱 = add_prism
 
 def add_wireframe_cube(*args, **kwargs):
     if not common.is_engine_created:
@@ -117,10 +129,17 @@ def add_wireframe_quad(*args, **kwargs):
     return common.stage.add_wireframe_quad(*args, **kwargs)
 新增方形線框 = add_wireframe_quad
 
-def add_line(*args, **kwargs):
+
+def add_polygon_line(邊=5, *args, **kwargs):
     if not common.is_engine_created:
         Engine3D()
-    return common.stage.add_line(*args, **kwargs)
+    return common.stage.add_polygon_line(side=邊, *args, **kwargs)
+新增多邊形線 = add_polygon_line
+
+def add_line(長=10, 寬=3, *args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_line(length=長, thickness=寬, *args, **kwargs)
 新增直線 = add_line
 
 
@@ -129,6 +148,12 @@ def add_quad(*args, **kwargs):
         Engine3D()
     return common.stage.add_quad(*args, **kwargs)
 新增方形平面 = add_quad
+
+def add_polygon(邊=5, *args, **kwargs):
+    if not common.is_engine_created:
+        Engine3D()
+    return common.stage.add_polygon(side=邊, *args, **kwargs)
+新增多邊形平面 = add_polygon
 
 def add_circle(*args, **kwargs):
     if not common.is_engine_created:

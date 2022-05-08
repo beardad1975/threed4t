@@ -53,17 +53,17 @@ class CorAssist:
         verts = (Vec3(5,0,0), Vec3(-5,0,0))
         tris = ((0,1), )
         self.line_x = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.rgba(255,165,0))
+                             color=color.rgba(120, 239, 255))
 
         verts = (Vec3(0,5,0), Vec3(0,-5,0))
         tris = ((0,1), )
         self.line_y = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.rgba(0,255,0))
+                             color=color.rgba(105, 255, 145))
 
         verts = (Vec3(0,0,5), Vec3(0,0,-5))
         tris = ((0,1), )
         self.line_z = Entity(model=Mesh(vertices=verts, triangles=tris, mode='line', thickness=2),
-                             color=color.rgba(255,0,0))
+                             color=color.rgba(255, 123, 99))
 
 
 

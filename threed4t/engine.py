@@ -220,6 +220,22 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='sphere', *args, **kwargs)
         return e
 
+    def add_cylinder(self, *args, **kwargs):
+        e = Entity4t(model='cylinder', *args, **kwargs)
+        return e
+
+    def add_prism(self, side, *args, **kwargs):
+        e = Entity4t(model='prism', side=side, *args, **kwargs)
+        return e
+
+    def add_polygon(self, side, *args, **kwargs):
+        e = Entity4t(model='polygon', side=side, *args, **kwargs)
+        return e
+
+    def add_polygon_line(self, side, *args, **kwargs):
+        e = Entity4t(model='polygon_line', side=side, *args, **kwargs)
+        return e
+
     def add_quad(self, *args, **kwargs):
         e = Entity4t(model='quad', *args, **kwargs)
         return e
@@ -255,8 +271,8 @@ class Engine3D(Ursina, Repl):
         e = Entity4t(model='wireframe_quad', *args, **kwargs)
         return e
 
-    def add_line(self, *args, **kwargs):
-        e = Entity4t(model='line', *args, **kwargs)
+    def add_line(self, length, thickness, *args, **kwargs):
+        e = Entity4t(model='line', length=length, thickness=thickness,  *args, **kwargs)
         return e
 
     
