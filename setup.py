@@ -5,11 +5,11 @@ import setuptools
 
 setuptools.setup(
     name="threed4t",
-    version="0.0.6",
+    version="0.0.6" ,
     author="Wen-Hung, Chang 張文宏",
     author_email="beardad1975@nmes.tyc.edu.tw",
-    description="3d learning module for Teenagers",
-    long_description="3d learning module for Teenagers",
+    description="3d learning wraping library for Teenagers",
+    long_description="3d learning wraping library for Teenagers",
     long_description_content_type="text/markdown",
     url="https://github.com/beardad1975/threed4t",
     #packages=setuptools.find_packages(),
