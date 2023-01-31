@@ -17,7 +17,7 @@ setuptools.setup(
     python_requires=">=3.8",
     packages=['threed4t','模擬3D模組'],
     package_data={'threed4t': ['model4t/*','texture4t/*']},
-    install_requires = ['ursina ~= 5.1.0', 'opencv-contrib-python>=4.7.0.68' ],
+    install_requires = ['ursina ~= 5.2.0', 'opencv-contrib-python>=4.7.0.68' ],
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",

@@ -84,7 +84,7 @@ class Entity4t(Entity):
            kwargs['collider'] = 'box'
         
 
-
+        
 
         super().__init__(*args, **kwargs)
 
@@ -156,14 +156,21 @@ class Entity4t(Entity):
         #print(width, height)
 
         
-        common.ndarray_texure.setup2dTexture(width,height,
+        #common.ndarray_texure.setup2dTexture(width,height,
+        #        Texture.T_unsigned_byte,Texture.F_rgb8)
+        #common.ndarray_texure.setRamImage(buf)
+
+        ndarray_texture = Texture()
+        ndarray_texture.setup2dTexture(width,height,
                 Texture.T_unsigned_byte,Texture.F_rgb8)
-        common.ndarray_texure.setRamImage(buf)
+        ndarray_texture.setRamImage(buf)
         
         # remove texture
-        self.texture = None
+        #self.texture = None
 
-        self.setTexture(common.ndarray_texure, True)
+        self._texture = ndarray_texture
+        self.model.setTexture(self._texture, 1)
+        #self.setTexture(common.ndarray_texure, True)
         #print('tex ',common.ndarray_texure)
         #self.texture = tex
 

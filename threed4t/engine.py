@@ -5,7 +5,7 @@ from ursina.scene import instance as scene
 from direct.showbase.ShowBase import ShowBase
 
 from . import common
-from .repl_panda import Repl
+#from .repl_panda import Repl
 from .entity4t import Entity4t
 from .text4t import Text4t
 from .assist import CorAssist
@@ -13,7 +13,8 @@ from .assist import CorAssist
 
 import __main__
 
-class Engine3D(Ursina, Repl):
+#class Engine3D(Ursina, Repl):
+class Engine3D(Ursina):
     __single = None
     __first_time = True
 
@@ -291,6 +292,15 @@ class Engine3D(Ursina, Repl):
     @全螢幕.setter
     def 全螢幕(self, value):
         self.window.fullscreen = value
+
+    # @property
+    # def 顯示fps(self):
+    #     return self.window.fps_counter.enabled 
+
+    # @顯示fps.setter
+    # def 顯示fps(self, value):
+    #     self.window.fps_counter.enabled = value
+
 
 
     @property
