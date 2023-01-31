@@ -20,6 +20,7 @@ class Entity4t(Entity):
             # default cube model 
             kwargs['model'] = 'cube'
             kwargs['texture'] = 'white_cube.png'
+
         elif kwargs['model'] == 'sphere':
             kwargs['texture'] = load_texture('white_gradient',common.texture4t_folder)
             
@@ -132,11 +133,15 @@ class Entity4t(Entity):
     @property
     def 材質貼圖(self):
         self.setTextureOff(True)
-        return self.texture 
+        return self.texture
+        
 
     @材質貼圖.setter
     def 材質貼圖(self, value):
         self.texture = value
+
+
+            
 
     @property
     def 多維陣列貼圖(self):

@@ -28,7 +28,7 @@ __all__ = [
 
 
 Text.default_font = common.msjh_font_path
-print('字形設定: ', Text.default_font)
+print('windows font: ', Text.default_font)
 
 # shader
 光影著色器 = lit_with_shadows_shader

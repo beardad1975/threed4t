@@ -86,9 +86,12 @@ class CorAssist:
         # self.compass_cube = CompassCube()
 
         #cone
-        self.cone_x = Entity(model=Cone(4, direction=(1,0,0)), color=color.rgba(255,165,0,150),position=(5,0,0),scale=0.5)
-        self.cone_y = Entity(model=Cone(4, direction=(0,1,0)), color=color.rgba(0,255,0,150),position=(0,5,0),scale=0.5)
-        self.cone_z = Entity(model=Cone(4, direction=(0,0,1)), color=color.rgba(255,0,0,150),position=(0,0,5),scale=0.5)
+        self.cone_x = Entity(model=Cone(4), color=color.rgba(255,165,0,150),position=(5,0,0),scale=0.5)
+        self.cone_y = Entity(model=Cone(4), color=color.rgba(0,255,0,150),position=(0,5,0),scale=0.5)
+        self.cone_z = Entity(model=Cone(4), color=color.rgba(255,0,0,150),position=(0,0,5),scale=0.5)
+
+        self.cone_x.rotation_z = 90
+        self.cone_z.rotation_x = 90
 
         # cor mark 
         self.mark_x = CorMark('x')
