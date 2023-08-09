@@ -150,29 +150,29 @@ class Entity4t(Entity):
 
     @多維陣列貼圖.setter
     def 多維陣列貼圖(self, buf):
-        buf = cv2.flip(buf, -1)
+        buf = cv2.flip(buf, 0)
         width = buf.shape[1]
         height = buf.shape[0]
         #print(width, height)
 
-        
-        #common.ndarray_texure.setup2dTexture(width,height,
-        #        Texture.T_unsigned_byte,Texture.F_rgb8)
-        #common.ndarray_texure.setRamImage(buf)
 
         ndarray_texture = Texture()
         ndarray_texture.setup2dTexture(width,height,
                 Texture.T_unsigned_byte,Texture.F_rgb8)
         ndarray_texture.setRamImage(buf)
         
-        # remove texture
-        #self.texture = None
+        
 
         self._texture = ndarray_texture
         self.model.setTexture(self._texture, 1)
-        #self.setTexture(common.ndarray_texure, True)
-        #print('tex ',common.ndarray_texure)
-        #self.texture = tex
+
+    #  another method    
+    #     陣列 = cv2.cvtColor(陣列, cv2.COLOR_BGR2RGB)
+    #     data = im.fromarray(陣列)
+    #     data= data.convert("RGBA")
+    #     av=Texture(data)
+    #     物體.材質貼圖 = av
+
 
     @property
     def 動畫清單(self):

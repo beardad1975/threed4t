@@ -14,7 +14,9 @@ from .assist import CorAssist
 import __main__
 
 #class Engine3D(Ursina, Repl):
-class Engine3D(Ursina):
+UrsinaClass = Ursina.__closure__[0].cell_contents
+
+class Engine3D(UrsinaClass):
     __single = None
     __first_time = True
 
@@ -47,7 +49,7 @@ class Engine3D(Ursina):
         __main__.舞台 = self
 
         #ursina 
-        self.window = window
+        #self.window = window
         
 
         if common.WIN_MIN_WIDTH < 寬 < common.WIN_MAX_WIDTH:
@@ -68,23 +70,34 @@ class Engine3D(Ursina):
         else:
             self.win_height = common.WIN_HEIGHT    
 
-
-        Ursina.__init__(self)
-
-        self.window.windowed_size = Vec2(self.win_width,self.win_height)
-        self.window.title = title
-        self.window.borderless = False
-        self.window.fullscreen = False
-        self.window.fps_counter.enabled = False
-        self.window.exit_button.visible = False
-        self.window.cog_button.enabled = False
         
-        self.window.position = (50, 50)
+        UrsinaClass.__init__(self)
+
+        # setup window (global)
+        window.windowed_size = Vec2(self.win_width,self.win_height)
+        window.title = title
+        window.borderless = False
+        window.fullscreen = False
+        window.fps_counter.enabled = False
+        window.exit_button.visible = False
+        window.cog_button.enabled = False
+        
+        window.position = (50, 50)
+
+        # self.window.windowed_size = Vec2(self.win_width,self.win_height)
+        # self.window.title = title
+        # self.window.borderless = False
+        # self.window.fullscreen = False
+        # self.window.fps_counter.enabled = False
+        # self.window.exit_button.visible = False
+        # self.window.cog_button.enabled = False
+        
+        # self.window.position = (50, 50)
 
         print(f"建立舞台(寬{self.win_width}x高{self.win_height})")
 
-        self.scene = scene
-        self.camera_ui = camera.ui
+        # self.scene = scene
+        # self.camera_ui = camera.ui
 
         
 
@@ -101,14 +114,15 @@ class Engine3D(Ursina):
         #cor assist 
         self.cor_assist = CorAssist()
 
-    def input_up(self, key):
+    def input_up(self, key, is_raw=False):
         if self.user_key_release_handler:
             if key in self._input_name_changes:
                 k = self._input_name_changes[key]
                 self.user_key_release_handler(k)
             else:
                 self.user_key_release_handler(key)
-        Ursina.input_up(self, key)
+        
+        UrsinaClass.input_up(self, key, is_raw)
 
     # def input_hold(self, key):
     #     if self.user_key_hold_handler:
@@ -121,9 +135,10 @@ class Engine3D(Ursina):
             dt = globalClock.getDt() * application.time_scale
             self.user_update_handler(dt)
         
-        return Ursina._update(self, task)
+        
+        return UrsinaClass._update(self, task)
 
-    def input(self, key):
+    def input(self, key, is_raw=False):
         if key == 'control':
             self.cor_assist.enabled = not self.cor_assist.enabled
 
@@ -139,7 +154,8 @@ class Engine3D(Ursina):
                 self.user_key_press_handler(key)
 
         #print('my input:', key)
-        Ursina.input(self, key)
+        
+        UrsinaClass.input(self, key, is_raw)
 
 
 
@@ -287,11 +303,11 @@ class Engine3D(Ursina):
     ## property
     @property
     def 全螢幕(self):
-        return self.window.fullscreen 
+        return window.fullscreen 
 
     @全螢幕.setter
     def 全螢幕(self, value):
-        self.window.fullscreen = value
+        window.fullscreen = value
 
     # @property
     # def 顯示fps(self):
@@ -305,27 +321,27 @@ class Engine3D(Ursina):
 
     @property
     def 視窗邊框(self):
-        return not self.window.borderless 
+        return not window.borderless 
 
     @視窗邊框.setter
     def 視窗邊框(self, value):
-       self.window.borderless = not value 
+       window.borderless = not value 
 
     @property
     def 背景顏色(self):
-        return self.window.color 
+        return window.color 
 
     @背景顏色.setter
     def 背景顏色(self, value):
-        self.window.color = value
+        window.color = value
 
     @property
     def 介面上邊(self):
-        return self.window.top 
+        return window.top 
 
     @property
     def 介面中心(self):
-        return self.window.center 
+        return window.center 
 
     @property
     def 介面下邊(self):
@@ -333,32 +349,32 @@ class Engine3D(Ursina):
 
     @property
     def 介面左邊(self):
-        return self.window.left 
+        return window.left 
 
     @property
     def 介面右邊(self):
-        return self.window.right
+        return window.right
 
     @property
     def 介面右上(self):
-        return self.window.top_right
+        return window.top_right
 
     @property
     def 介面左上(self):
-        return self.window.top_left
+        return window.top_left
 
     @property
     def 介面右下(self):
-        return self.window.bottom_right
+        return window.bottom_right
 
     @property
     def 介面左下(self):
-        return self.window.bottom_left
+        return window.bottom_left
 
     @property
     def 空間場景(self):
-        return self.scene
+        return scene
 
     @property
     def 使用者介面(self):
-        return self.camera_ui
+        return camera_ui
